@@ -1,0 +1,94 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 28311552 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2769), pid=12452, tid=1745685312
+#
+# JRE version: OpenJDK Runtime Environment (7.0_55-b14) (build 1.7.0_55-b14)
+# Java VM: OpenJDK Server VM (24.51-b03 mixed mode linux-x86 )
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x67f10400):  VMThread [stack: 0x68050000,0x680d1000] [id=12460]
+
+Stack: [0x68050000,0x680d1000]
+VM_Operation (0xb656c958): ParallelGCFailedAllocation, mode: safepoint, requested by thread 0xb6407c00
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x67f2b400 JavaThread "Service Thread" daemon [_thread_blocked, id=12520, stack(0x67949000,0x6799a000)]
+  0x67f29400 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=12519, stack(0x6799a000,0x67a1b000)]
+  0x67f27400 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=12518, stack(0x67a1b000,0x67a9c000)]
+  0x67f25c00 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=12517, stack(0x67a9c000,0x67aed000)]
+  0x67f14000 JavaThread "Finalizer" daemon [_thread_blocked, id=12462, stack(0x67e5e000,0x67eaf000)]
+  0x67f12800 JavaThread "Reference Handler" daemon [_thread_blocked, id=12461, stack(0x67eaf000,0x67f00000)]
+  0xb6407c00 JavaThread "main" [_thread_blocked, id=12457, stack(0xb651d000,0xb656e000)]
+
+Other Threads:
+=>0x67f10400 VMThread [stack: 0x68050000,0x680d1000] [id=12460]
+  0x67f2d000 WatcherThread [stack: 0x678c8000,0x67949000] [id=12521]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0xb64052f0] Threads_lock - owner thread: 0x67f10400
+[0xb6405700] Heap_lock - owner thread: 0xb6407c00
+
+Heap
+ PSYoungGen      total 172032K, used 62054K [0x9dd40000, 0xad640000, 0xb32c0000)
+  eden space 107776K, 0% used [0x9dd40000,0x9dd40000,0xa4680000)
+  from space 64256K, 96% used [0xa9780000,0xad419a20,0xad640000)
+  to   space 66816K, 0% used [0xa4680000,0xa4680000,0xa87c0000)
+ ParOldGen       total 123392K, used 81164K [0x732c0000, 0x7ab40000, 0x9dd40000)
+  object space 123392K, 65% used [0x732c0000,0x782031e8,0x7ab40000)
+ PSPermGen       total 16384K, used 3923K [0x6b2c0000, 0x6c2c0000, 0x732c0000)
+  object space 16384K, 23% used [0x6b2c0000,0x6b694c70,0x6c2c0000)
+
+Card table byte_map: [0x6b07f000,0x6b2c0000] byte_map_base: 0x6ad25a00
+
+Polling page: 0xb76fe000
+
+Code Cache  [0xb3395000, 0xb35f5000, 0xb6395000)
+ total_blobs=752 nmethods=633 adapters=73 free_code_cache=46783Kb largest_free_block=47851264
+
+Compilation events (10 events):
+Event: 33.651 Thread 0x67f27400 nmethod 732 0xb35cacc8 code [0xb35cae20, 0xb35cb258]
+Event: 33.652 Thread 0x67f27400  735             com.android.dx.rop.cst.CstString::stringToUtf8Bytes (175 bytes)
+Event: 33.664 Thread 0x67f29400 nmethod 734 0xb35ca5c8 code [0xb35ca700, 0xb35ca924]
+Event: 33.664 Thread 0x67f29400  736             com.android.dx.rop.code.DexTranslationAdvice::totalRopWidth (36 bytes)
+Event: 33.669 Thread 0x67f29400 nmethod 736 0xb35ca0c8 code [0xb35ca1e0, 0xb35ca370]
+Event: 33.669 Thread 0x67f29400  737             com.android.dx.rop.code.Rops::pickBinaryOp (158 bytes)
+Event: 33.675 Thread 0x67f29400 nmethod 737 0xb35d8708 code [0xb35d8820, 0xb35d8a1c]
+Event: 33.722 Thread 0x67f27400 nmethod 735 0xb35d9b48 code [0xb35d9c60, 0xb35da3b0]
+Event: 36.912 Thread 0x67f29400  738             com.android.dx.dex.file.AnnotationUtils::makeSignature (251 bytes)
+Event: 36.914 Thread 0x67f27400  739             com.android.dx.rop.type.StdTypeList::withFirst (53 bytes)
+
+GC Heap History (10 events):
+Event: 25.797 GC heap after
+Heap after GC invocations=17 (full 4):
+ PSYoungGen      total 128768K, used 0K [0x9dd40000, 0xabb40000, 0xb32c0000)
+  eden space 63488K, 0% used [0x9dd40000,0x9dd40000,0xa1b40000)
+  from space 65280K, 0% used [0xa1b40000,0xa1b40000,0xa5b00000)
+  to   space 69888K, 0% used [0xa7700000,0xa7700000,0xabb40000)
+ ParOldGen       total 123392K, used 65848K [0x732c0000, 0x7ab40000, 0x9dd40000)
+  object space 123392K, 53% used [0x732c0000,0x7730e1e8,0x7ab40000)
+ PSPermGen       total 16384K, used 3884K [0x6b2c0000, 0x6c2c0000, 0x732c0000)
+  object space 16384K, 23% used [0x6b2c0000,0x6b68b2b8,0x6c2c0000)
+}
